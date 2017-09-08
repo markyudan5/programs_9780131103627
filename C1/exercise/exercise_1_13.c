@@ -11,6 +11,7 @@ main(){
     int word_lengths[MAX_WORDS];
     word_count = 0; 
     
+    // Need to set the list to 0s otherwise the value would be wrong after 8th element
     for (int i = 0; i < MAX_WORDS; i++){
         word_lengths[i] = 0; 
     }
