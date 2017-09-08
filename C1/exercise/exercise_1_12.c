@@ -3,6 +3,7 @@
 #define IN 1 /* inside a word */
 #define OUT 0 /* outside a word */
 
+/* list one word each line */
 main(){
     int c, state;
     state = OUT;
