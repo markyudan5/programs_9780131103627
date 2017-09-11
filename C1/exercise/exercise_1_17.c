@@ -8,11 +8,26 @@ int my_getline(char target[], int maxlen);
 main(){
     int len;
     char line[MAXLINE];
-    
-    while ((len = my_getline(line, MAXLINE) > 0)){
-        if (len > 80){
-            printf("%s", line);
+    int c, i;
+    i = 0;
+
+    while ((c = getchar()) != EOF && i < (MAXLINE - 1)){
+        if (c != '\n')
+            line[i] = c;
+            ++i;
+        if (c == '\n'){
+            if (i > 5){
+                line[i] = '\n';
+                line[i + 1] = '\0';
+                printf("%s\n", line);
+                i = 0;
+            }
+            else{
+                i = 0;
+            }
         }
+
+
     }
     return 0;
 }
@@ -27,6 +42,10 @@ int my_getline(char target[], int maxlen){
         ++i;
     }
     target[i] = '\0';
+    if (i > 8){
+        printf("length > 80\n");
+        printf("%s", target);
+    }
     return i;
 }
 
