@@ -2,24 +2,26 @@
 
 #define MAXLINE 1000
 
-int my_getline(char target[], int maxlen);
+int append(char to[], char from[], int to_len, int from_len);
 
 /* Print all input lines that are longer than 80 characters */
 main(){
     int len;
-    char line[MAXLINE];
+    char temp_line[MAXLINE];  // temporary line 
+    char lines[MAXLINE]; // store qualified lines
     int c, i;
+    int lines_len;
     i = 0;
-
+    lines_len = 0;
+         
     while ((c = getchar()) != EOF && i < (MAXLINE - 1)){
         if (c != '\n')
-            line[i] = c;
+           temp_line[i] = c;
             ++i;
         if (c == '\n'){
             if (i > 5){
-                line[i] = '\n';
-                line[i + 1] = '\0';
-                printf("%s\n", line);
+                temp_line[i] == '\n';
+                lines_len = append(lines, temp_line, lines_len, i); 
                 i = 0;
             }
             else{
@@ -27,25 +29,17 @@ main(){
             }
         }
 
-
+        printf("%s", lines);
     }
     return 0;
 }
-/* my getline */
-int my_getline(char target[], int maxlen){
-    int c, i;
+int append(char to[], char from[], int to_len, int from_len){
+    int i = to_len;
+    int j = 0;
 
-    for (i = 0; i < maxlen - 1 && (c = getchar()) != EOF && c != '\n'; ++i)
-        target[i] = c;
-    if (c == '\n'){
-        target[i] = c;
+    while((to[i] = from[j]) != '\0')
         ++i;
-    }
-    target[i] = '\0';
-    if (i > 8){
-        printf("length > 80\n");
-        printf("%s", target);
-    }
-    return i;
-}
+        ++j;
 
+    return i; 
+}
