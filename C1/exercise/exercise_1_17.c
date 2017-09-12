@@ -16,32 +16,30 @@ main(){
 
          
     while ((c = getchar()) != EOF && i < (MAXLINE - 1)){
-        if (c != '\n'){
-           temp_line[i] = c;
-            ++i;
+        if (c == '\n' && i >= 5){
+            lines_len = append(lines, temp_line, lines_len, i);
+            i = 0;
         }
-        if (c == '\n'){
-            if (i > 4){
-                temp_line[i] == '\n';
-                temp_line[i + 1] = '\0';
-                lines_len = append(lines, temp_line, lines_len, i); 
-                i = 0;
-            }
-            else{
-                i = 0;
-            }
+    else if (c == '\n' && i < 5){
+        i = 0;
+    }
+        else{
+            temp_line[i] = c;
+            ++i;
         }
     } 
     for (int j = 0; j < lines_len; ++j){
         putchar(lines[j]);
     }
+    putchar('\n');
     //printf("%s", lines);
     return 0;
 }
 int append(char to[], char from[], int to_len, int from_len){
     int i = to_len + 1;
     int j = 0;
-
+    to[i] = '\n';
+    ++i;
     while((to[i] = from[j]) != '\0'){
         ++i;
         ++j;
