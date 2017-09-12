@@ -17,22 +17,25 @@ main(){
          
     while ((c = getchar()) != EOF && i < (MAXLINE - 1)){
         if (c == '\n' && i >= 5){
+            temp_line[i] = '\0';
             lines_len = append(lines, temp_line, lines_len, i);
             i = 0;
         }
-    else if (c == '\n' && i < 5){
-        i = 0;
-    }
+        else if (c == '\n' && i < 5){
+            i = 0;
+        }
         else{
             temp_line[i] = c;
             ++i;
         }
     } 
+    lines[++lines_len] = '\0';
+    printf("%s", lines);
     for (int j = 0; j < lines_len; ++j){
         putchar(lines[j]);
     }
     putchar('\n');
-    //printf("%s", lines);
+    printf("%s", lines);
     return 0;
 }
 int append(char to[], char from[], int to_len, int from_len){
