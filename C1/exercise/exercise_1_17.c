@@ -5,7 +5,7 @@
 int append(char to[], char from[], int to_len, int from_len);
 
 /* Print all input lines that are longer than 80 characters */
-main(){
+int main(){
     int len;
     char temp_line[MAXLINE];  // temporary line 
     char lines[MAXLINE]; // store qualified lines
@@ -13,15 +13,14 @@ main(){
     int lines_len;
     i = 0;
     lines_len = 0;
-
          
     while ((c = getchar()) != EOF && i < (MAXLINE - 1)){
-        if (c == '\n' && i >= 5){
+        if (c == '\n' && i >= 80){
             temp_line[i] = '\0';
             lines_len = append(lines, temp_line, lines_len, i);
             i = 0;
         }
-        else if (c == '\n' && i < 5){
+        else if (c == '\n' && i < 80){
             i = 0;
         }
         else{
@@ -30,16 +29,12 @@ main(){
         }
     } 
     lines[++lines_len] = '\0';
-    printf("%s", lines);
-    for (int j = 0; j < lines_len; ++j){
-        putchar(lines[j]);
-    }
-    putchar('\n');
-    printf("%s", lines);
+    printf("%s\n", lines);
     return 0;
 }
+/* append an input string to the output string and return the length of the output */
 int append(char to[], char from[], int to_len, int from_len){
-    int i = to_len + 1;
+    int i = to_len;
     int j = 0;
     to[i] = '\n';
     ++i;
@@ -47,7 +42,5 @@ int append(char to[], char from[], int to_len, int from_len){
         ++i;
         ++j;
     }
-    printf("lines len: %d, input len: %d\n", i, j);
-
     return i; 
 }
