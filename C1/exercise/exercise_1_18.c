@@ -28,10 +28,13 @@ int main(){
     printf("%s\n", lines);
     */
     char a[6] = {'a', 'a', 'a', 'a', '\n', '\0'};
-    char b[8] = {'b', 'b', 'b', 'b', 'b', 'b','\n', '\0'};
-    removetrailblanks(lines, a, 0, 6);
+    char b[8] = {'b', 'b', 'b', 'b', 'b', 'b', '\n', '\0'};
+    char d[8] = {'c', 'c', 'c', 'c', ' ', ' ', '\n', '\0'};
+    int len = removetrailblanks(lines, a, 0, 6);
     printf("%s", lines);
-    removetrailblanks(lines, b, 6, 8);
+    len = removetrailblanks(lines, b, len, 8);
+    printf("%s", lines);
+    len = removetrailblanks(lines, d, len, 8);
     printf("%s", lines);
     return 0;
 }
@@ -41,7 +44,7 @@ int main(){
  */
 int removetrailblanks(char store[], char input[], int store_len, int input_len){
     int i = store_len;
-    int j = input_len - 1;
+    int j = input_len - 3;
     while (j > 0 && (input[j] == ' ' || input[j] == '\t')){
         if (input[j - 1] != ' ' && input[j - 1] != '\t'){
             input[j] = '\0';
@@ -51,8 +54,9 @@ int removetrailblanks(char store[], char input[], int store_len, int input_len){
             --j;
         }
     }
+    printf("%s", input);
     //append the string to store[]
-    return append(store, input, store_len, j);
+    return j;
 }
 /* append an input string to the output string and return the length of the output */
 int append(char to[], char from[], int to_len, int from_len){
