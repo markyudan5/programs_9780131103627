@@ -9,14 +9,11 @@ int main(){
     int lines_len = 0;
     int i = 0;
     int c;
-/*
+
     while ((c = getchar()) != EOF && i < (MAXLINE - 1)){
-        if (c == '\n' && i >= 80){
+        if (c == '\n'){
             temp_line[i] = '\0';
             lines_len = removetrailblanks(lines, temp_line, lines_len, i);
-            i = 0;
-        }
-        else if (c == '\n' && i < 80){
             i = 0;
         }
         else{
@@ -26,16 +23,19 @@ int main(){
     } 
     lines[++lines_len] = '\0';
     printf("%s\n", lines);
-    */
+    
+    /*
     char a[6] = {'a', 'a', 'a', 'a', '\n', '\0'};
     char b[8] = {'b', 'b', 'b', 'b', 'b', 'b', '\n', '\0'};
     char d[8] = {'c', 'c', 'c', 'c', ' ', ' ', '\n', '\0'};
+    char e[3] = {'\t', '\n', '\0'};
     int len = removetrailblanks(lines, a, 0, 6);
-    printf("%s", lines);
     len = removetrailblanks(lines, b, len, 8);
-    printf("%s", lines);
+    len = removetrailblanks(lines, e, len, 3);
     len = removetrailblanks(lines, d, len, 8);
+    
     printf("%s", lines);
+    */
     return 0;
 }
 /* remove trail blanks and tabs of the input string and append it to store[]
@@ -54,9 +54,10 @@ int removetrailblanks(char store[], char input[], int store_len, int input_len){
             --j;
         }
     }
-    printf("%s", input);
     //append the string to store[]
-    return j;
+    if (j != 0)
+       i = append(store, input, store_len, j);
+    return i; 
 }
 /* append an input string to the output string and return the length of the output */
 int append(char to[], char from[], int to_len, int from_len){
