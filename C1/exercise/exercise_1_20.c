@@ -17,22 +17,24 @@ void detab(){
     int index = 0;
 
     while ((c = getchar()) != EOF){
-        printf("index:%d\n", index);
+       // printf("index:%d\n", index);
         if (c == '\t'){
             int i;
             for (i = 0; i < SPACES; ++i){
                 new[index + i] = ' ';
+		//		printf("in for:%d\n", index + i);
             }
-            index = index + i + 1;
+            index = index + i;
+        //    printf("in if:%s\n", new);
         }
         else{
             new[index] = c;
-            printf("%c, %d\n", new[index], index);
-            printf("in loop%s\n", new);
+         //   printf("%c, %d\n", new[index], index);
+         //   printf("in else:%s\n", new);
             ++index;
         }
     } 
     new[index] = '\0';
-    printf("final index:%d\n", index);
+  //  printf("final index:%d\n", index);
     printf("%s\n", new);
 }
